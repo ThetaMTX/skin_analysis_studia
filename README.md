@@ -53,22 +53,22 @@ Open your web browser and go to http://127.0.0.1:8000.
 * Delete Image: In the edit image page, click on "Delete Image" to remove the image from your gallery.
 * Logout: Click on the "Logout" button at the top-right corner of the image list page to log out.
 
-### Future Plans
+## Future Plans
 
-# Image Analysis Server
+### Image Analysis Server
 In future updates, we plan to integrate a server that will analyze the uploaded skin images and provide feedback on what the image depicts. This feature aims to assist users in identifying skin conditions or anomalies.
 
-# Steps for Future Integration:
+### Steps for Future Integration:
 * Set Up Image Analysis Server: Develop or integrate with an existing image analysis server that can process and analyze skin images.
 * API Integration: Create API endpoints in the Django application to send images to the analysis server and receive analysis results.
 * Display Results: Update the frontend to display analysis results to the user after an image is uploaded or edited.
 * Enhance Security: Ensure secure transmission of images and analysis data between the client and server.
 
-### Contributing
+## Contributing
 Contributions are welcome! Please fork this repository and submit a pull request with your changes. Ensure that your code follows the project's coding standards and includes appropriate tests.
 
-# License
+## License
 This project is licensed under the MIT License. See the LICENSE (in a future) file for more details.
 
-# Contact
+## Contact
 For questions or suggestions, please open an issue on GitHub or contact the project maintainer at maciejkapan@gmail.com
