@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Upload Image</title>
+    {% load static %}
+    <link rel="stylesheet" type="text/css" href="{% static 'styles.css' %}">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+        .upload-container {
+            width: 400px;
+            padding: 20px;
+            border: 2px solid #ccc;
+            border-radius: 5px;
+            background-color: #f9f9f9;
+            text-align: center;
+        }
+        .upload-container h2 {
+            color: #333;
+        }
+        .upload-container form {
+            margin-top: 20px;
+            text-align: left; /* Ustawienie tekstu w formularzu na lewo */
+        }
+        .upload-container form label {
+            display: block;
+            margin-bottom: 5px;
+            color: #666;
+        }
+        .upload-container form textarea,
+        .upload-container form input[type="text"] {
+            width: 100%;
+            padding: 8px;
+            font-size: 14px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+            margin-bottom: 10px;
+        }
+        .upload-container form button {
+            display: block;
+            margin: 10px auto;
+        }
+        .upload-container a {
+            display: block;
+            margin-top: 10px;
+            text-decoration: none;
+            color: #007bff;
+        }
+    </style>
+</head>
+<body>
+    <div class="upload-container">
+        <h2>Upload Image</h2>
+        <form method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+            <label for="id_image">Select Image:</label>
+            {{ form.image }}
+
+            <label for="id_description">Description:</label>
+            <textarea id="id_description" name="description" rows="4" required></textarea>
+
+            <button type="submit">Upload</button>
+        </form>
+        <a href="{% url 'image_list' %}">Back to Image List</a>
+    </div>
+</body>
+</html>
