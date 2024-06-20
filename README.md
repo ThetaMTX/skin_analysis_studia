@@ -56,7 +56,7 @@ Open your web browser and go to http://127.0.0.1:8000.
 ## Future Plans
 
 ### Image Analysis Server
-In future updates, we plan to integrate a server that will analyze the uploaded skin images and provide feedback on what the image depicts. This feature aims to assist users in identifying skin conditions or anomalies.
+In future updates, we (I) plan to integrate a server that will analyze the uploaded skin images and provide feedback on what the image depicts. This feature aims to assist users in identifying skin conditions or anomalies.
 
 ### Steps for Future Integration:
 * Set Up Image Analysis Server: Develop or integrate with an existing image analysis server that can process and analyze skin images.
