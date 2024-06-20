@@ -18,10 +18,10 @@ This project is a web application for managing and analyzing skin images. Users 
 
 ## Installation
 1. Clone the repository:
-   ```
-   git clone https://github.com/ThetaMTX/skin_analysis_studia.git
-   cd skin-analysis
-   ```
+```
+git clone https://github.com/ThetaMTX/skin_analysis_studia.git
+cd skin-analysis
+```
 2. Create a virtual environment and activate it:
 ```
 python -m venv env
