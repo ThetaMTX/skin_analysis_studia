@@ -1,8 +1,8 @@
-### Skin Analysis Application
-## Overview
+## Skin Analysis Application
+### Overview
 This project is a web application for managing and analyzing skin images. Users can upload, edit, and delete images, as well as view their image gallery. The application requires users to log in, ensuring that only authenticated users can access and manage their images.
 
-## Features
+### Features
 * User Authentication: Users must log in to access the application. Each session requires a new login.
 * Image Upload: Users can upload new skin images.
 * Image Edit: Users can edit the details of existing images.
@@ -10,13 +10,13 @@ This project is a web application for managing and analyzing skin images. Users 
 * Responsive Design: The application features a clean and responsive design for an enhanced user experience.
 * Logout Button: A logout button is provided on the image list page for easy user logouts.
 
-## Technologies Used
+### Technologies Used
 * Django: Web framework for developing the application.
 * HTML/CSS: Frontend technologies for creating the user interface.
 * Bootstrap: For responsive design and enhanced UI elements.
 * SQLite: Default database for development purposes (can be switched to another database for production).
 
-## Installation
+### Installation
 1. Clone the repository:
 ```
 git clone https://github.com/ThetaMTX/skin_analysis_studia.git
@@ -46,14 +46,14 @@ python manage.py runserver
 7. Access the application:
 Open your web browser and go to http://127.0.0.1:8000.
 
-## Usage
+### Usage
 * Login: Navigate to the login page and log in with your credentials.
 * Upload Image: Click on the "Upload New Image" link to upload a new skin image.
 * Edit Image: In the image gallery, click on "Edit" under any image to edit its details.
 * Delete Image: In the edit image page, click on "Delete Image" to remove the image from your gallery.
 * Logout: Click on the "Logout" button at the top-right corner of the image list page to log out.
 
-## Future Plans
+### Future Plans
 
 # Image Analysis Server
 In future updates, we plan to integrate a server that will analyze the uploaded skin images and provide feedback on what the image depicts. This feature aims to assist users in identifying skin conditions or anomalies.
@@ -64,7 +64,7 @@ In future updates, we plan to integrate a server that will analyze the uploaded 
 * Display Results: Update the frontend to display analysis results to the user after an image is uploaded or edited.
 * Enhance Security: Ensure secure transmission of images and analysis data between the client and server.
 
-## Contributing
+### Contributing
 Contributions are welcome! Please fork this repository and submit a pull request with your changes. Ensure that your code follows the project's coding standards and includes appropriate tests.
 
 # License
