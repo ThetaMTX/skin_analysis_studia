@@ -46,6 +46,11 @@ python manage.py runserver
 7. Access the application:
 Open your web browser and go to http://127.0.0.1:8000.
 
+8. The Api that the app wants to connect and see what type of image it is:
+```
+http://0.0.0.0:5000/classify/
+```
+
 ### Usage
 * Login: Navigate to the login page and log in with your credentials.
 * Upload Image: Click on the "Upload New Image" link to upload a new skin image.
