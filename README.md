@@ -61,19 +61,20 @@ http://0.0.0.0:5000/classify/
 ## Future Plans
 
 ### Image Analysis Server
-In future updates, we (I) plan to integrate a server that will analyze the uploaded skin images and provide feedback on what the image depicts. This feature aims to assist users in identifying skin conditions or anomalies.
+~~In future updates, we (I) plan to integrate a server that will analyze the uploaded skin images and provide feedback on what the image depicts. This feature aims to assist users in identifying skin conditions or anomalies.~~
+https://github.com/ThetaMTX/API-for-app-studia-project
 
 ### Steps for Future Integration:
-* Set Up Image Analysis Server: Develop or integrate with an existing image analysis server that can process and analyze skin images.
-* API Integration: Create API endpoints in the Django application to send images to the analysis server and receive analysis results.
-* Display Results: Update the frontend to display analysis results to the user after an image is uploaded or edited.
-* Enhance Security: Ensure secure transmission of images and analysis data between the client and server.
+~~* Set Up Image Analysis Server: Develop or integrate with an existing image analysis server that can process and analyze skin images.~~
+~~* API Integration: Create API endpoints in the Django application to send images to the analysis server and receive analysis results.~~
+~~* Display Results: Update the frontend to display analysis results to the user after an image is uploaded or edited.~~
+~~* Enhance Security: Ensure secure transmission of images and analysis data between the client and server.~~
 
 ## Contributing
 Contributions are welcome! Please fork this repository and submit a pull request with your changes. Ensure that your code follows the project's coding standards and includes appropriate tests.
 
 ## License
-This project is licensed under the MIT License. See the LICENSE (in a future) file for more details.
+This project is licensed under the MIT License. See the LICENSE (in a future[or never]) file for more details.
 
 ## Contact
 For questions or suggestions, please open an issue on GitHub or contact the project maintainer at maciejkapan@gmail.com
