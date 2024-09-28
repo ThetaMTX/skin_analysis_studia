@@ -1,7 +1,9 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <title>Upload Image</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Upload and Classify Image</title>
     {% load static %}
     <link rel="stylesheet" type="text/css" href="{% static 'styles.css' %}">
     <style>
@@ -12,29 +14,40 @@
             align-items: center;
             height: 100vh;
             margin: 0;
+            padding: 20px;
+            background-color: #f0f0f0;
         }
-        .upload-container {
-            width: 400px;
+        .container {
+            display: flex;
+            width: 100%;
+            max-width: 1200px;
+            justify-content: space-between;
             padding: 20px;
             border: 2px solid #ccc;
+            border-radius: 5px;
+            background-color: #ffffff;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+        .upload-container, .classify-container {
+            width: 48%;
+            padding: 20px;
+            border: 1px solid #ccc;
             border-radius: 5px;
             background-color: #f9f9f9;
             text-align: center;
         }
-        .upload-container h2 {
+        h2 {
             color: #333;
+            margin-bottom: 20px;
         }
-        .upload-container form {
-            margin-top: 20px;
-            text-align: left; /* Ustawienie tekstu w formularzu na lewo */
-        }
-        .upload-container form label {
+        label {
             display: block;
             margin-bottom: 5px;
             color: #666;
         }
-        .upload-container form textarea,
-        .upload-container form input[type="text"] {
+        textarea,
+        input[type="text"],
+        input[type="file"] {
             width: 100%;
             padding: 8px;
             font-size: 14px;
@@ -43,32 +56,117 @@
             box-sizing: border-box;
             margin-bottom: 10px;
         }
-        .upload-container form button {
-            display: block;
-            margin: 10px auto;
-        }
-        .upload-container a {
-            display: block;
-            margin-top: 10px;
+        button {
+            background-color: #008CBA; /* Blue */
+            border: none;
+            color: white;
+            padding: 10px 20px;
+            text-align: center;
             text-decoration: none;
-            color: #007bff;
+            display: inline-block;
+            font-size: 16px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s, transform 0.2s;
+        }
+        button:hover {
+            background-color: #007B9E; /* Darker blue */
+            transform: scale(1.05);
+        }
+        #result {
+            margin-top: 20px;
+            white-space: pre-wrap;
+            background-color: #e9ecef;
+            padding: 10px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+            display: none;
+            text-align: center; /* Center text in the response */
+        }
+        .copy-button {
+            background-color: #008CBA; /* Blue */
+            border: none;
+            color: white;
+            padding: 5px 10px;
+            font-size: 14px;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-left: 10px; /* Space between class and copy button */
+            transition: background-color 0.3s, transform 0.2s;
+        }
+        .copy-button:hover {
+            background-color: #007B9E; /* Darker blue */
+            transform: scale(1.05);
         }
     </style>
+    <script>
+        async function classifyImage(event) {
+            event.preventDefault();
+            const formData = new FormData(document.getElementById('classifyForm'));
+
+            try {
+                const response = await fetch('http://localhost:5000/classify/', {
+                    method: 'POST',
+                    body: formData,
+                });
+
+                const jsonResponse = await response.json();
+
+                if (!response.ok) {
+                    throw new Error(`HTTP error! status: ${response.status}, message: ${JSON.stringify(jsonResponse)}`);
+                }
+
+                // Display class and confidence with a copy button
+                document.getElementById('result').innerHTML = `
+                    <strong>Class:</strong> ${jsonResponse.class}
+                    <button class="copy-button" onclick="copyToClipboard('${jsonResponse.class}')">Copy</button><br>
+                    <strong>Confidence:</strong> ${jsonResponse.confidence}
+                `;
+                document.getElementById('result').style.display = 'block';
+            } catch (error) {
+                console.error('Error classifying image:', error);
+                document.getElementById('result').innerText = 'Error classifying image: ' + error.message;
+                document.getElementById('result').style.display = 'block';
+            }
+        }
+
+        function copyToClipboard(text) {
+            navigator.clipboard.writeText(text).then(() => {
+                alert('Class copied to clipboard!');
+            }).catch(err => {
+                console.error('Could not copy text: ', err);
+            });
+        }
+    </script>
 </head>
 <body>
-    <div class="upload-container">
-        <h2>Upload Image</h2>
-        <form method="post" enctype="multipart/form-data">
-            {% csrf_token %}
-            <label for="id_image">Select Image:</label>
-            {{ form.image }}
+    <div class="container">
+        <div class="upload-container">
+            <h2>Upload Image</h2>
+            <form method="post" enctype="multipart/form-data" id="uploadForm">
+                {% csrf_token %}
+                <label for="id_image">Select Image:</label>
+                {{ form.image }}
 
-            <label for="id_description">Description:</label>
-            <textarea id="id_description" name="description" rows="4" required></textarea>
+                <label for="id_description">Description:</label>
+                <textarea id="id_description" name="description" rows="4" required></textarea>
 
-            <button type="submit">Upload</button>
-        </form>
-        <a href="{% url 'image_list' %}">Back to Image List</a>
+                <button type="submit">Upload</button>
+            </form>
+            <a href="{% url 'image_list' %}">Back to Image List</a>
+        </div>
+
+        <div class="classify-container">
+            <h2>Classify Image</h2>
+            <form id="classifyForm" onsubmit="classifyImage(event)">
+                <label for="classify_image">Select Image for Classification:</label>
+                <input type="file" name="file" accept="image/*" required>
+
+                <button type="submit">Classify</button>
+            </form>
+            <h2>Response:</h2>
+            <pre id="result"></pre>
+        </div>
     </div>
 </body>
 </html>
